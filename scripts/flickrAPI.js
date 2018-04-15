@@ -223,37 +223,25 @@ var flickrBox = document.querySelector('.flickr-box');
 
 function cloneBox () {
 	var clone = flickrBox.cloneNode(true);
+  clone.style.display = 'inline-block';
 	document.body.appendChild(clone);
+  return clone;
 }
 
-document.querySelector('.flickr-photo').style.background = "url(" + data[0].media.m; + ")"
-
-if (data[0].title === " ") {
-	document.querySelector('.photo-link').innerHTML = "Untitled";
-} else {
-	document.querySelector('.photo-link').innerHTML = data[0].title;
-}
-
-document.querySelector('.photo-link').href = data[0].link;
-document.querySelector('.author-link').innerHTML = data[0].author;
-document.querySelector('.author-link').href = "https://www.flickr.com/photos/" + data[0].author_id;
-document.querySelector('.photo-description').innerHTML = "Taken " + data[0].date_taken + " and published " + data[0].published + ".";
-document.querySelector('.photo-tags').innerHTML = "Tags: " + data[0].tags;
-
-for (i = 1; i < data.length; i++) {
-	cloneBox();
-	document.querySelector('.flickr-photo').style.background = "url(" + data[i].media.m; + ")"
+for (i = 0; i < data.length; i++) {
+	elem = cloneBox();
+	elem.querySelector('.flickr-photo').style.background = "url(" + data[i].media.m; + ")"
 	
 	if (data[i].title === " ") {
-		document.querySelector('.photo-link').innerHTML = "Untitled";
+		elem.querySelector('.photo-link').innerHTML = "Untitled";
 	} else {
-		document.querySelector('.photo-link').innerHTML = data[i].title;
+		elem.querySelector('.photo-link').innerHTML = data[i].title;
 	}
 
-	document.querySelector('.photo-link').href = data[i].link;
-	document.querySelector('.author-link').innerHTML = data[i].author;
-	document.querySelector('.author-link').href = "https://www.flickr.com/photos/" + data[i].author_id;
-	document.querySelector('.photo-description').innerHTML = "Taken " + data[i].date_taken + " and published " + data[i].published + ".";
-	document.querySelector('.photo-tags').innerHTML = "Tags: " + data[i].tags;
+	elem.querySelector('.photo-link').href = data[i].link;
+	elem.querySelector('.author-link').innerHTML = data[i].author;
+	elem.querySelector('.author-link').href = "https://www.flickr.com/photos/" + data[i].author_id;
+	elem.querySelector('.photo-description').innerHTML = "Taken " + data[i].date_taken + " and published " + data[i].published + ".";
+	elem.querySelector('.photo-tags').innerHTML = "Tags: " + data[i].tags;
 }
 
